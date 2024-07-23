@@ -1,6 +1,6 @@
 {
     "name": "equistamp",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A TypeScript library for interacting with equistamp.com",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
     },
     "exports": {
         ".": "./dist/index.js",
-        "./alerts":"./dist/alerts.js",
+        "./alerts": "./dist/alerts.js",
         "./constants": "./dist/constants.js",
         "./evaluation": "./dist/evaluation.js",
         "./evaluations": "./dist/evaluations.js",
