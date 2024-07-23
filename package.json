@@ -1,0 +1,43 @@
+{
+    "name": "equistamp",
+    "version": "1.0.0",
+    "description": "A TypeScript library for interacting with equistamp.com",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "test": "jest",
+        "build": "tsc",
+        "prepublishOnly": "npm run build",
+        "prettier": "prettier --check --ignore-path .gitignore \"**/*.{ts*,js,css,md,html}\"",
+        "lint": "tsc && npm run prettier && npm run eslint",
+        "eslint:fix": "eslint --fix --ignore-pattern .gitignore \"**/*.ts*\"",
+        "prettier:fix": "prettier --write --ignore-path .gitignore \"**/*.{ts*,js,css,md,html}\"",
+        "lint:fix": "tsc && npm run prettier:fix && npm run eslint:fix"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/EquiStamp/equistamp-ts.git"
+    },
+    "keywords": [
+        "Evaluations",
+        "AI",
+        "ML",
+        "LLM"
+    ],
+    "author": "Equistamp",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/EquiStamp/equistamp-ts/issues"
+    },
+    "homepage": "https://github.com/EquiStamp/equistamp-ts#readme",
+    "devDependencies": {
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.14.12",
+        "jest": "^29.7.0",
+        "ts-jest": "^29.2.3",
+        "typescript": "^5.5.4"
+    }
+}
