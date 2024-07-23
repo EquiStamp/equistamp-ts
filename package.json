@@ -17,6 +17,30 @@
         "prettier:fix": "prettier --write --ignore-path .gitignore \"**/*.{ts*,js,css,md,html}\"",
         "lint:fix": "tsc && npm run prettier:fix && npm run eslint:fix"
     },
+    "exports": {
+        ".": "./dist/index.js",
+        "./alerts":"./dist/alerts.js",
+        "./constants": "./dist/constants.js",
+        "./evaluation": "./dist/evaluation.js",
+        "./evaluations": "./dist/evaluations.js",
+        "./evaluationSession": "./dist/evaluationSession.js",
+        "./models": "./dist/models.js",
+        "./schedules": "./dist/schedules.js",
+        "./scores": "./dist/scores.js",
+        "./server": "./dist/server.js",
+        "./tags": "./dist/tags.js",
+        "./tasks": "./dist/tasks.js",
+        "./tester": "./dist/tester.js",
+        "./types": "./dist/types.js",
+        "./users": "./dist/users.js"
+    },
+    "typesVersions": {
+        "*": {
+            "*": [
+                "dist/*"
+            ]
+        }
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/EquiStamp/equistamp-ts.git"
