@@ -1,5 +1,5 @@
-import {Get, Search, Post, Put} from './server'
-import type {Model, FilterConfig} from './types'
+import {Get, Search, Post, Put} from 'equistamp/server'
+import type {Model, FilterConfig} from 'equistamp/types'
 
 const asMillionTokens = (val?: number) => (val ? val * 4000000 : 0)
 

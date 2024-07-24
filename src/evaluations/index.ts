@@ -1,5 +1,5 @@
-import {EvaluationsResult, ItemType, FilterConfig, SearchResult} from './types'
-import {Search} from './server'
+import {EvaluationsResult, ItemType, FilterConfig, SearchResult} from 'equistamp/types'
+import {Search} from 'equistamp/server'
 
 export const getEvaluations = async (query: FilterConfig): Promise<SearchResult> => {
   const filters = query.filters || {}

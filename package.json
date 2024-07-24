@@ -1,9 +1,8 @@
 {
     "name": "equistamp",
+    "type": "module",
     "version": "1.0.2",
     "description": "A TypeScript library for interacting with equistamp.com",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
     "files": [
         "dist"
     ],
@@ -18,27 +17,26 @@
         "lint:fix": "tsc && npm run prettier:fix && npm run eslint:fix"
     },
     "exports": {
-        ".": "./dist/index.js",
-        "./alerts": "./dist/alerts.js",
         "./constants": "./dist/constants.js",
-        "./evaluation": "./dist/evaluation.js",
-        "./evaluations": "./dist/evaluations.js",
-        "./evaluationSession": "./dist/evaluationSession.js",
-        "./models": "./dist/models.js",
-        "./schedules": "./dist/schedules.js",
-        "./scores": "./dist/scores.js",
-        "./server": "./dist/server.js",
-        "./tags": "./dist/tags.js",
-        "./tasks": "./dist/tasks.js",
-        "./tester": "./dist/tester.js",
         "./types": "./dist/types.js",
-        "./users": "./dist/users.js"
+        "./alerts": "./dist/alerts/index.js",
+        "./evaluation": "./dist/evaluation/index.js",
+        "./evaluations": "./dist/evaluations/index.js",
+        "./evaluationSession": "./dist/evaluationSession/index.js",
+        "./models": "./dist/models/index.js",
+        "./schedules": "./dist/schedules/index.js",
+        "./scores": "./dist/scores/index.js",
+        "./server": "./dist/server/index.js",
+        "./tags": "./dist/tags/index.js",
+        "./tasks": "./dist/tasks/index.js",
+        "./tester": "./dist/tester/index.js",
+        "./users": "./dist/users/index.js"
     },
     "typesVersions": {
         "*": {
-            "*": [
-                "dist/*"
-            ]
+            "types": ["./dist/types.d.ts"],
+            "constants": ["./dist/constants.d.ts"],
+            "*": ["./dist/*/index.d.ts"]
         }
     },
     "repository": {

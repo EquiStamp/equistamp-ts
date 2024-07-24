@@ -1,5 +1,5 @@
-import type {User, LoginParams} from './types'
-import {Get, Post, Put, getSessionId} from './server'
+import type {User, LoginParams} from 'equistamp/types'
+import {Get, Post, Put, getSessionId} from 'equistamp/server'
 
 export const setSessionCookie = async (session_token: string, expiration: Date) => {
   // Convert the date to UTC format for the cookie expiration

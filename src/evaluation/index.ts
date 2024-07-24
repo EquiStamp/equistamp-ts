@@ -1,5 +1,5 @@
-import {ID, Evaluation, EvaluationCheck, Model, ModelConnection} from './types'
-import {Get, Post, Put, Delete} from './server'
+import {ID, Evaluation, EvaluationCheck, Model, ModelConnection} from 'equistamp/types'
+import {Get, Post, Put, Delete} from 'equistamp/server'
 
 export const createEvaluation = async (e: Evaluation): Promise<Evaluation> => Post('/evaluation', e)
 export const getEvaluation = async (evalID: ID): Promise<Evaluation> =>

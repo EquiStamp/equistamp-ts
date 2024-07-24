@@ -1,5 +1,5 @@
-import {CodeStage, DSLCode, TaskType, ID} from './types'
-import {Post} from './server'
+import {CodeStage, DSLCode, TaskType, ID} from 'equistamp/types'
+import {Post} from 'equistamp/server'
 
 export type AcceptableOverrides = {
   stage?: CodeStage

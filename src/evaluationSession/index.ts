@@ -1,5 +1,5 @@
-import type {FilterConfig, ID, Eval} from './types'
-import {Get, Search, Post, Delete} from './server'
+import type {FilterConfig, ID, Eval} from 'equistamp/types'
+import {Get, Search, Post, Delete} from 'equistamp/server'
 
 export const getEvaluationSession = async (id: ID): Promise<Eval> => Get('/evaluationsession', {id})
 

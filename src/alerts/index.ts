@@ -1,5 +1,5 @@
-import type {FilterConfig, Alert} from './types'
-import {Search, Get, Post, Put, Delete} from './server'
+import type {FilterConfig, Alert} from 'equistamp/types'
+import {Search, Get, Post, Put, Delete} from 'equistamp/server'
 
 export const getAlerts = async (query: FilterConfig) => {
   const filters = query.filters || {}

@@ -1,5 +1,5 @@
-import {Delete, Get, Post, Put} from './server'
-import {Schedule, ScheduleResult} from './types'
+import {Delete, Get, Post, Put} from 'equistamp/server'
+import {Schedule, ScheduleResult} from 'equistamp/types'
 
 export const getSchedules = async () =>
   Get('/evaluationmodeljobshandler') as Promise<ScheduleResult>

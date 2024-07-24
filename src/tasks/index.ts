@@ -1,5 +1,5 @@
-import type {FilterConfig, Eval, Task, ID, SchemaHistory} from './types'
-import {Post, Put, Search} from './server'
+import type {FilterConfig, Eval, Task, ID, SchemaHistory} from 'equistamp/types'
+import {Post, Put, Search} from 'equistamp/server'
 
 export const getHumanTasks = async (evalId: string, restart?: boolean): Promise<Eval> =>
   Post('/evaluationsession', {evaluation_id: evalId, restart})
