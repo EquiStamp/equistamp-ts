@@ -1,5 +1,5 @@
 import {CodeStage, DSLCode, TaskType, ID} from 'equistamp/types'
-import {Post} from 'equistamp/server'
+import BaseAPI from 'equistamp/server'
 
 export type AcceptableOverrides = {
   stage?: CodeStage
@@ -16,16 +16,9 @@ export type AcceptableOverrides = {
   prompt?: string
   expected?: string
   correct?: boolean
-  'positive-examples': string[]
-  'negative-examples': string[]
+  'positive-examples'?: string[]
+  'negative-examples'?: string[]
 }
-export const testDSL = async (code: DSLCode, overrides: AcceptableOverrides) =>
-  Post('/dsltest', {
-    context: overrides,
-    code,
-    stage: overrides.stage,
-    response: overrides.response,
-  })
 
 type Overrides = {
   system_prompt?: DSLCode
@@ -34,9 +27,22 @@ type Overrides = {
   response?: DSLCode
   grader?: DSLCode
 }
-export const evaluateTask = async (model_id: ID, task_id: ID, overrides?: Overrides) =>
-  Post('/queryexternalmodelhandler', {
-    model_id,
-    task_id,
-    ...(overrides || {}),
-  })
+
+export class Tester extends BaseAPI {
+  testDSL = async ({code, stage, response, ...overrides}: AcceptableOverrides) => {
+    return this.Post('/dsltest', {
+      context: overrides,
+      code,
+      stage,
+      response,
+    })
+  }
+
+  evaluateTask = async (model_id: ID, task_id: ID, overrides?: Overrides) => {
+    this.Post('/queryexternalmodelhandler', {
+      model_id,
+      task_id,
+      ...(overrides || {}),
+    })
+  }
+}

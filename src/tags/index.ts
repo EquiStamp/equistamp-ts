@@ -1,4 +1,4 @@
-import type {FilterConfig} from 'equistamp/types'
-import {Search} from 'equistamp/server'
+import type {Tag} from 'equistamp/types'
+import {Endpoint} from 'equistamp/server'
 
-export const getTags = async (query: FilterConfig) => Search('/tag', query)
+export class Tags extends Endpoint<Tag>('/tag') {}

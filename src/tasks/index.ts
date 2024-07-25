@@ -1,24 +1,28 @@
 import type {FilterConfig, Eval, Task, ID, SchemaHistory} from 'equistamp/types'
-import {Post, Put, Search} from 'equistamp/server'
+import {Endpoint} from 'equistamp/server'
 
-export const getHumanTasks = async (evalId: string, restart?: boolean): Promise<Eval> =>
-  Post('/evaluationsession', {evaluation_id: evalId, restart})
-export const checkAnswer = async (params: any) => Post('/response', params)
+export class Tasks extends Endpoint<Task>('/task') {
+  getHumanTasks = async (evalId: string, restart?: boolean): Promise<Eval> => {
+    return this.Post('/evaluationsession', {evaluation_id: evalId, restart})
+  }
 
-export const getTasks = async (evaluation_id: ID, query: FilterConfig) =>
-  Search('/task', {
-    ...query,
-    filters: {...(query.filters || {}), evaluation_id},
-  })
+  checkAnswer = async (params: any) => {
+    return this.Post('/response', params)
+  }
 
-export const updateTask = async (task: Task) => Put('/task', task)
-export const createTask = async (task: Task) => Post('/task', task)
+  getTasks = async (evaluation_id: ID, query: FilterConfig) => {
+    return this.search('/task', {
+      ...query,
+      filters: {...(query.filters || {}), evaluation_id},
+    })
+  }
+}
 
-export const getSchemas = async (evaluation_id: ID, query: FilterConfig) =>
-  Search('/schema', {
-    ...query,
-    filters: {...(query.filters || {}), evaluation_id},
-  })
-
-export const updateSchema = async (schema: SchemaHistory) => Put('/schema', schema)
-export const createSchema = async (schema: SchemaHistory) => Post('/schema', schema)
+export class Schemas extends Endpoint<SchemaHistory>('/schema') {
+  forEvaluation = async (evaluation_id: ID, query: FilterConfig) => {
+    return this.list({
+      ...query,
+      filters: {...(query.filters || {}), evaluation_id},
+    })
+  }
+}

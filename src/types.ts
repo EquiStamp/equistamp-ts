@@ -35,6 +35,14 @@ import {
   ACCURACY,
 } from './constants'
 
+export type APISettings = {
+  server?: string
+  sessionToken?: string
+  apiToken?: string
+}
+export type Data = {[k: string]: any} | string | undefined | null
+export type HTTPMethod = 'GET' | 'POST' | 'DELETE' | 'PATCH' | 'PUT' | 'OPTIONS'
+
 export type QuestionType =
   | typeof FREE_RESPONSE_QUESTION
   | typeof MULTIPLE_CHOICE_QUESTION
@@ -90,11 +98,11 @@ export type Threshold = {
   min?: number
   max?: number
 }
-export type Evaluations = {
+export type EvalRunsHistory = {
   [key: string]: DateMap
 }
 export type EvaluationsResult = {
-  evals: Evaluations
+  evals: EvalRunsHistory
   thresholds: Threshold[]
 }
 

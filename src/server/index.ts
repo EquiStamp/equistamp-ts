@@ -1,10 +1,20 @@
-import type {FilterConfig, SearchResult, ItemType, Contact} from 'equistamp/types'
-
-export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001'
-// export const API_BASE_URL = 'https://equistamp.net'
-
-export const getSessionId = () =>
-  Object.fromEntries(document.cookie.split('; ').map((v) => v.split('='))).sessionId
+import {GET, POST, DELETE, PUT} from 'equistamp/constants'
+import type {
+  FilterConfig,
+  SearchResult,
+  ItemType,
+  APISettings,
+  Data,
+  HTTPMethod,
+} from 'equistamp/types'
+type Headers = {[k: string]: string}
+type QueryProps = {
+  server: string
+  endpoint: string
+  headers?: Headers
+  data?: Data
+  method?: HTTPMethod
+}
 
 type CallCache = {
   [k: string]: Promise<any>
@@ -31,12 +41,16 @@ const paramsString = (params: any) =>
         .map(([k, v]) => `${k}=${v}`)
         .join('&')
 
-export const query = async (callEndpoint: string, data?: any, callMethod?: string) => {
-  const method = callMethod || 'GET'
-  const endpoint = ['GET', 'DELETE'].includes(method)
-    ? callEndpoint + paramsString(data)
-    : callEndpoint
-  const body = ['POST', 'PUT'].includes(method) ? data && JSON.stringify(data) : undefined
+export const query = async ({
+  server,
+  endpoint: callEndpoint,
+  headers,
+  data,
+  method: callMethod,
+}: QueryProps) => {
+  const method = callMethod || GET
+  const endpoint = [GET, DELETE].includes(method) ? callEndpoint + paramsString(data) : callEndpoint
+  const body = [POST, PUT].includes(method) ? data && JSON.stringify(data) : undefined
 
   const getContents = (resp: Response) => {
     const contentType = resp.headers.get('Content-Type') || 'application/json'
@@ -51,13 +65,10 @@ export const query = async (callEndpoint: string, data?: any, callMethod?: strin
   // Create a unique key based on the endpoint and serialized parameters
   const key = `${method}${callEndpoint}?${JSON.stringify(data)}`
   if (!apiCallCache[key]) {
-    apiCallCache[key] = fetch(`${API_BASE_URL}${endpoint}`, {
+    apiCallCache[key] = fetch(`${server}${endpoint}`, {
       method,
       body,
-      headers: {
-        'Content-Type': 'application/json',
-        'Session-Token': getSessionId() || '',
-      },
+      headers,
     })
       .then(async (response) => {
         delete apiCallCache[key]
@@ -74,16 +85,16 @@ export const query = async (callEndpoint: string, data?: any, callMethod?: strin
   return apiCallCache[key]
 }
 
-export const Get = async (endpoint: string, params?: any) => query(endpoint, params)
-export const Post = async (endpoint: string, data: any) => query(endpoint, data, 'POST')
-export const Put = async (endpoint: string, data: any) => query(endpoint, data, 'PUT')
-export const Delete = async (endpoint: string, params?: any) => query(endpoint, params, 'DELETE')
+export const Get = async (props: QueryProps) => query(props)
+export const Post = async (props: QueryProps) => query({...props, method: POST})
+export const Put = async (props: QueryProps) => query({...props, method: PUT})
+export const Delete = async (props: QueryProps) => query({...props, method: DELETE})
 
 type ExtraOptions = {
   groupBy?: ItemType
 }
 export const Search = async (
-  endpoint: string,
+  props: QueryProps,
   params: FilterConfig & ExtraOptions,
 ): Promise<SearchResult> => {
   if (!params) return {items: [], count: 0}
@@ -104,7 +115,74 @@ export const Search = async (
       queryParams.order_by_desc = sort.key
     }
   }
-  return Get(endpoint, queryParams)
+  return Get({...props, data: queryParams})
 }
 
-export const contact = async (params: Contact) => Post('/contact', params)
+class BaseAPI {
+  baseURL: string
+  headers: Headers
+
+  constructor({server, sessionToken, apiToken}: APISettings) {
+    this.baseURL = server || 'http://localhost:3001'
+    this.headers = {
+      'Content-Type': 'application/json',
+    }
+    if (sessionToken) {
+      this.headers['Session-Token'] = sessionToken
+    } else if (apiToken) {
+      this.headers['Api-Token'] = apiToken
+    }
+  }
+
+  request = async (endpoint: string, data?: Data, method?: HTTPMethod) => {
+    return query({server: this.baseURL, endpoint, headers: this.headers, data, method})
+  }
+
+  Get = async (endpoint: string, data?: Data) => {
+    return query({endpoint, server: this.baseURL, headers: this.headers, method: GET, data})
+  }
+
+  Post = async (endpoint: string, data?: Data) => {
+    return query({endpoint, server: this.baseURL, headers: this.headers, method: POST, data})
+  }
+
+  Put = async (endpoint: string, data?: Data) => {
+    return query({endpoint, server: this.baseURL, headers: this.headers, method: PUT, data})
+  }
+
+  Delete = async (endpoint: string, data?: Data) => {
+    return query({endpoint, server: this.baseURL, headers: this.headers, method: DELETE, data})
+  }
+
+  search = async (endpoint: string, params: FilterConfig & ExtraOptions) => {
+    return Search({endpoint, server: this.baseURL, headers: this.headers}, params)
+  }
+}
+
+export default BaseAPI
+
+export function Endpoint<T>(endpoint: string) {
+  return class extends BaseAPI {
+    endpoint = endpoint
+
+    create = async (data: T) => {
+      return this.Post(this.endpoint, data as Data)
+    }
+
+    list = async (query: FilterConfig) => {
+      return this.search(this.endpoint, query)
+    }
+
+    fetch = async (id: string) => {
+      return this.Get(this.endpoint, {id})
+    }
+
+    update = async (item: T) => {
+      return this.Put(this.endpoint, item as Data)
+    }
+
+    remove = async (item: T) => {
+      return this.Delete(this.endpoint, item as Data)
+    }
+  }
+}

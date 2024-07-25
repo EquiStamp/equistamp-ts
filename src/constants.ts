@@ -38,3 +38,11 @@ export const MOST_EXPENSIVE = 'most_expensive'
 export const LEAST_EXPENSIVE = 'least_expensive'
 export const LATENCY = 'latency'
 export const ACCURACY = 'accuracy'
+
+export const GET = 'GET'
+export const POST = 'POST'
+export const DELETE = 'DELETE'
+export const PATCH = 'PATCH'
+export const PUT = 'PUT'
+export const OPTIONS = 'OPTIONS'
+export const HTTP_METHODS = [GET, POST, PATCH, PUT, OPTIONS, DELETE]
