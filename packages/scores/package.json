@@ -1,7 +1,7 @@
 {
   "name": "@equistamp/scores",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,6 @@
     "Equistamp"
   ],
   "author": "Equistamp",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/EquiStamp/equistamp-ts/issues"
   },

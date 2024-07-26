@@ -1,7 +1,7 @@
 {
     "name": "@equistamp/equistamp",
     "private": true,
-    "version": "1.0.2",
+    "version": "1.0.1",
     "description": "A TypeScript library for interacting with equistamp.com",
     "workspaces": [
         "packages/*"
@@ -16,9 +16,9 @@
         "eslint:fix": "yarn workspaces run eslint --fix",
         "prettier:fix": "yarn workspaces run prettier --write .",
         "lint:fix": "yarn workspaces run tsc && npm run prettier:fix && npm run eslint:fix",
-        "bump-patch": "yarn workspaces run yarn version --no-git-tag-version --new-version patch && yarn version --new-version patch",
-        "bump-minor": "yarn workspaces run yarn version --no-git-tag-version --new-version minor && yarn version --new-version minor",
-        "bump-major": "yarn workspaces run yarn version --no-git-tag-version --new-version major && yarn version --new-version major"
+        "bump-patch": "yarn workspaces run yarn version --no-git-tag-version --new-version patch && git add . && yarn version --new-version patch",
+        "bump-minor": "yarn workspaces run yarn version --no-git-tag-version --new-version minor && git add . && yarn version --new-version minor",
+        "bump-major": "yarn workspaces run yarn version --no-git-tag-version --new-version major && git add . && yarn version --new-version major"
     },
     "repository": {
         "type": "git",
