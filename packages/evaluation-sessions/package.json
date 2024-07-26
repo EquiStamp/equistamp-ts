@@ -1,6 +1,6 @@
 {
   "name": "@equistamp/evaluation-sessions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "type": "module",
   "main": "dist/index.js",
@@ -19,7 +19,6 @@
     "Equistamp"
   ],
   "author": "Equistamp",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/EquiStamp/equistamp-ts/issues"
   },
