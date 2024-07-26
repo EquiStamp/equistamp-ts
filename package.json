@@ -1,58 +1,21 @@
 {
-    "name": "equistamp",
-    "type": "module",
-    "version": "1.0.3",
+    "name": "@equistamp/equistamp",
+    "private": true,
+    "version": "1.0.0",
     "description": "A TypeScript library for interacting with equistamp.com",
-    "files": [
-        "dist"
+    "workspaces": [
+        "packages/*"
     ],
     "scripts": {
-        "test": "jest",
-        "build": "tsc",
-        "prepublishOnly": "npm run build",
+        "build": "yarn workspaces run build",
+        "test": "yarn workspaces run test",
+        "link-all": "yarn workspaces run yarn link",
+        "publish-all": "yarn workspaces run publish",
         "prettier": "prettier --check --ignore-path .gitignore \"**/*.{ts*,js,css,md,html}\"",
         "lint": "tsc && npm run prettier && npm run eslint",
         "eslint:fix": "eslint --fix --ignore-pattern .gitignore",
         "prettier:fix": "prettier --write --ignore-path .gitignore \"**/*.{ts*,js,css,md,html}\"",
         "lint:fix": "tsc && npm run prettier:fix && npm run eslint:fix"
-    },
-    "exports": {
-        "./api": "./dist/api.js",
-        "./constants": "./dist/constants.js",
-        "./types": "./dist/types.js",
-        "./alerts": "./dist/alerts/index.js",
-        "./evaluations": "./dist/evaluations/index.js",
-        "./evaluationSession": "./dist/evaluationSession/index.js",
-        "./models": "./dist/models/index.js",
-        "./modelConnections": "./dist/modelConnections/index.js",
-        "./schedules": "./dist/schedules/index.js",
-        "./scores": "./dist/scores/index.js",
-        "./server": "./dist/server/index.js",
-        "./tags": "./dist/tags/index.js",
-        "./tasks": "./dist/tasks/index.js",
-        "./tester": "./dist/tester/index.js",
-        "./users": "./dist/users/index.js"
-    },
-    "typesVersions": {
-        "*": {
-            "api": [
-                "./dist/api.d.ts"
-            ],
-            "types": [
-                "./dist/types.d.ts"
-            ],
-            "constants": [
-                "./dist/constants.d.ts"
-            ],
-            "*": [
-                "./dist/*/index.d.ts"
-            ]
-        }
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app/jest"
-        ]
     },
     "repository": {
         "type": "git",
@@ -76,6 +39,7 @@
         "eslint": "^9.7.0",
         "jest": "^29.7.0",
         "ts-jest": "^29.2.3",
-        "typescript": "^5.5.4"
+        "typescript": "^5.5.4",
+        "yarn": "^1.22.22"
     }
 }

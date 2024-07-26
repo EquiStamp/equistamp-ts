@@ -1,0 +1,17 @@
+{
+    "name": "@equistamp/constants",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc",
+        "test": "jest",
+        "publish": "npm publish --access public"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "typescript": "^4.5.4"
+    }
+}
