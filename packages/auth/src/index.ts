@@ -1,4 +1,4 @@
-import type { LoginParams} from '@equistamp/types'
+import type {LoginParams} from '@equistamp/types'
 import BaseAPI from '@equistamp/server'
 
 const getSessionId = () =>

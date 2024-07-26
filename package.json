@@ -10,15 +10,15 @@
         "build": "yarn workspaces run build",
         "test": "yarn workspaces run test",
         "link-all": "yarn workspaces run yarn link",
-        "publish-all": "yarn workspaces run yarn publish",
+        "publish-all": "npm publish --workspaces --access public",
         "prettier": "yarn workspaces run prettier --check .",
         "lint": "yarn workspaces run tsc && yarn prettier && npm run eslint",
         "eslint:fix": "yarn workspaces run eslint --fix",
         "prettier:fix": "yarn workspaces run prettier --write .",
         "lint:fix": "yarn workspaces run tsc && npm run prettier:fix && npm run eslint:fix",
-        "patch-bump": "yarn workspaces run yarn version --no-git-tag-version --new-version patch && yarn version --new-version patch",
-        "minor-bump": "yarn workspaces run yarn version --no-git-tag-version --new-version minor && yarn version --new-version minor",
-        "major-bump": "yarn workspaces run yarn version --no-git-tag-version --new-version major && yarn version --new-version major"
+        "bump-patch": "yarn workspaces run yarn version --no-git-tag-version --new-version patch && yarn version --new-version patch",
+        "bump-minor": "yarn workspaces run yarn version --no-git-tag-version --new-version minor && yarn version --new-version minor",
+        "bump-major": "yarn workspaces run yarn version --no-git-tag-version --new-version major && yarn version --new-version major"
     },
     "repository": {
         "type": "git",
