@@ -1,14 +1,14 @@
-import type {User, LoginParams, FilterConfig, APISettings} from '@equistamp/types'
+import type {User, FilterConfig, APISettings} from '@equistamp/types'
 import {Endpoint} from '@equistamp/server'
-import {Auth} from '@equistamp/auth'
+import Auth from '@equistamp/auth'
 
-export class Users extends Endpoint<User>('/user') {
-    auth: Auth
+export default class Users extends Endpoint<User>('/user') {
+  auth: Auth
 
-    constructor(settings: APISettings) {
-        super(settings)
-        this.auth = new Auth(settings)
-    }
+  constructor(settings: APISettings) {
+    super(settings)
+    this.auth = new Auth(settings)
+  }
 
   list = async (query: FilterConfig) => {
     return {items: [], count: 0}
@@ -16,7 +16,7 @@ export class Users extends Endpoint<User>('/user') {
 
   update = async (user: User | null) => {
     if (!user) {
-        await this.auth.logout()
+      await this.auth.logout()
     } else if (this.auth.isLoggedIn()) {
       return this.Put('/user', user)
     }

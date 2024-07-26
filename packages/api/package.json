@@ -1,35 +1,52 @@
 {
-    "name": "@equistamp/api",
-    "version": "1.0.0",
-    "type": "module",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "license": "MIT",
-    "scripts": {
-        "build": "tsc",
-        "test": "jest",
-        "link": "yarn link",
-        "publish": "npm publish --access public"
-    },
-    "dependencies": {
-        "@equistamp/constants": "^1.0.0",
-        "@equistamp/server": "^1.0.0",
-        "@equistamp/types": "^1.0.0",
-        "@equistamp/auth": "^1.0.0",
-        "@equistamp/alerts": "^1.0.0",
-        "@equistamp/evaluationSessions": "^1.0.0",
-        "@equistamp/evaluations": "^1.0.0",
-        "@equistamp/modelConnections": "^1.0.0",
-        "@equistamp/models": "^1.0.0",
-        "@equistamp/schedules": "^1.0.0",
-        "@equistamp/scores": "^1.0.0",
-        "@equistamp/tags": "^1.0.0",
-        "@equistamp/tasks": "^1.0.0",
-        "@equistamp/tester": "^1.0.0",
-        "@equistamp/users": "^1.0.0"
-    },
-    "devDependencies": {
-        "@types/node": "^20.14.12",
-        "typescript": "^4.5.4"
-    }
+  "name": "@equistamp/api",
+  "private": false,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "link": "yarn link",
+    "publish": "npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EquiStamp/equistamp-ts.git"
+  },
+  "keywords": [
+    "Equistamp",
+    "Evaluations",
+    "AI",
+    "ML",
+    "LLM"
+  ],
+  "author": "Equistamp",
+  "bugs": {
+    "url": "https://github.com/EquiStamp/equistamp-ts/issues"
+  },
+  "homepage": "https://github.com/EquiStamp/equistamp-ts#readme",
+  "dependencies": {
+    "@equistamp/alerts": "^1.0.0",
+    "@equistamp/auth": "^1.0.0",
+    "@equistamp/constants": "^1.0.0",
+    "@equistamp/evaluation-sessions": "^1.0.0",
+    "@equistamp/evaluations": "^1.0.0",
+    "@equistamp/model-connections": "^1.0.0",
+    "@equistamp/models": "^1.0.0",
+    "@equistamp/schedules": "^1.0.0",
+    "@equistamp/scores": "^1.0.0",
+    "@equistamp/server": "^1.0.0",
+    "@equistamp/tags": "^1.0.0",
+    "@equistamp/tasks": "^1.0.0",
+    "@equistamp/tester": "^1.0.0",
+    "@equistamp/types": "^1.0.0",
+    "@equistamp/users": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "typescript": "^4.5.4"
+  }
 }

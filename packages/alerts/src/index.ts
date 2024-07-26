@@ -1,7 +1,7 @@
 import type {FilterConfig, Alert} from '@equistamp/types'
 import {Endpoint} from '@equistamp/server'
 
-export class Alerts extends Endpoint<Alert>('/alert') {
+export default class Alerts extends Endpoint<Alert>('/alert') {
   list = async (query: FilterConfig) => {
     const filters = query.filters || {}
     const fields = filters.fields || [

@@ -1,17 +1,31 @@
 {
-    "name": "@equistamp/constants",
-    "version": "1.0.0",
-    "type": "module",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "license": "MIT",
-    "scripts": {
-        "build": "tsc",
-        "test": "jest",
-        "publish": "npm publish --access public"
-    },
-    "dependencies": {},
-    "devDependencies": {
-        "typescript": "^4.5.4"
-    }
+  "name": "@equistamp/constants",
+  "private": false,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "publish": "npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EquiStamp/equistamp-ts.git"
+  },
+  "keywords": [
+    "Equistamp"
+  ],
+  "author": "Equistamp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EquiStamp/equistamp-ts/issues"
+  },
+  "homepage": "https://github.com/EquiStamp/equistamp-ts#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@equistamp/alerts",
+  "name": "@equistamp/model-connections",
   "private": false,
   "version": "1.0.0",
   "type": "module",
@@ -11,21 +11,6 @@
     "test": "jest",
     "publish": "npm publish --access public"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/EquiStamp/equistamp-ts.git"
-  },
-  "keywords": [
-    "Evaluations",
-    "AI",
-    "ML",
-    "LLM"
-  ],
-  "author": "Equistamp",
-  "bugs": {
-    "url": "https://github.com/EquiStamp/equistamp-ts/issues"
-  },
-  "homepage": "https://github.com/EquiStamp/equistamp-ts#readme",
   "dependencies": {
     "@equistamp/constants": "^1.0.0",
     "@equistamp/server": "^1.0.0",

@@ -1,19 +1,37 @@
 {
-    "name": "@equistamp/types",
-    "version": "1.0.0",
-    "type": "module",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "license": "MIT",
-    "scripts": {
-        "build": "tsc",
-        "test": "jest",
-        "publish": "npm publish --access public"
-    },
-    "dependencies": {
-        "@equistamp/constants": "^1.0.0"
-    },
-    "devDependencies": {
-        "typescript": "^4.5.4"
-    }
+  "name": "@equistamp/types",
+  "private": false,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "publish": "npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EquiStamp/equistamp-ts.git"
+  },
+  "keywords": [
+    "Equistamp",
+    "Evaluations",
+    "AI",
+    "ML",
+    "LLM"
+  ],
+  "author": "Equistamp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EquiStamp/equistamp-ts/issues"
+  },
+  "homepage": "https://github.com/EquiStamp/equistamp-ts#readme",
+  "dependencies": {
+    "@equistamp/constants": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
 }

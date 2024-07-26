@@ -1,7 +1,7 @@
 import type {FilterConfig, Eval, Task, ID, SchemaHistory} from '@equistamp/types'
 import {Endpoint} from '@equistamp/server'
 
-export class Tasks extends Endpoint<Task>('/task') {
+export default class Tasks extends Endpoint<Task>('/task') {
   getHumanTasks = async (evalId: string, restart?: boolean): Promise<Eval> => {
     return this.Post('/evaluationsession', {evaluation_id: evalId, restart})
   }

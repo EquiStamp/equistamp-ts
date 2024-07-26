@@ -625,28 +625,28 @@ export type SearchResult = {
 }
 
 export type AcceptableOverrides = {
-    stage?: CodeStage
-    code: DSLCode
-    request?: string
-    response?: string
-    'endpoint-type'?: string
-    schema?: string
-    'task-type'?: TaskType
-    task?: string
-    'choices-text'?: string
-    'letter-choices'?: string
-    'num-choices'?: number
-    prompt?: string
-    expected?: string
-    correct?: boolean
-    'positive-examples'?: string[]
-    'negative-examples'?: string[]
+  stage?: CodeStage
+  code: DSLCode
+  request?: string
+  response?: string
+  'endpoint-type'?: string
+  schema?: string
+  'task-type'?: TaskType
+  task?: string
+  'choices-text'?: string
+  'letter-choices'?: string
+  'num-choices'?: number
+  prompt?: string
+  expected?: string
+  correct?: boolean
+  'positive-examples'?: string[]
+  'negative-examples'?: string[]
 }
 
 export type Overrides = {
-    system_prompt?: DSLCode
-    prompt?: DSLCode
-    request?: DSLCode
-    response?: DSLCode
-    grader?: DSLCode
+  system_prompt?: DSLCode
+  prompt?: DSLCode
+  request?: DSLCode
+  response?: DSLCode
+  grader?: DSLCode
 }

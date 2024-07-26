@@ -9,7 +9,7 @@ const addPricing = (m: Model) => ({
   cost_per_1M_output_tokens_usd: asMillionTokens(m.cost_per_output_character_usd) || undefined,
 })
 
-export class Models extends Endpoint<Model>('/model') {
+export default class Models extends Endpoint<Model>('/model') {
   list = async (query: FilterConfig) => {
     const filters = query.filters || {}
     const fields = filters.fields || [

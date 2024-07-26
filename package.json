@@ -10,12 +10,15 @@
         "build": "yarn workspaces run build",
         "test": "yarn workspaces run test",
         "link-all": "yarn workspaces run yarn link",
-        "publish-all": "yarn workspaces run publish",
-        "prettier": "prettier --check --ignore-path .gitignore \"**/*.{ts*,js,css,md,html}\"",
-        "lint": "tsc && npm run prettier && npm run eslint",
-        "eslint:fix": "eslint --fix --ignore-pattern .gitignore",
-        "prettier:fix": "prettier --write --ignore-path .gitignore \"**/*.{ts*,js,css,md,html}\"",
-        "lint:fix": "tsc && npm run prettier:fix && npm run eslint:fix"
+        "publish-all": "yarn workspaces run yarn publish",
+        "prettier": "yarn workspaces run prettier --check .",
+        "lint": "yarn workspaces run tsc && yarn prettier && npm run eslint",
+        "eslint:fix": "yarn workspaces run eslint --fix",
+        "prettier:fix": "yarn workspaces run prettier --write .",
+        "lint:fix": "yarn workspaces run tsc && npm run prettier:fix && npm run eslint:fix",
+        "patch-bump": "yarn workspaces run yarn version --no-git-tag-version --new-version patch && yarn version --new-version patch",
+        "minor-bump": "yarn workspaces run yarn version --no-git-tag-version --new-version minor && yarn version --new-version minor",
+        "major-bump": "yarn workspaces run yarn version --no-git-tag-version --new-version major && yarn version --new-version major"
     },
     "repository": {
         "type": "git",
@@ -38,6 +41,7 @@
         "@types/node": "^20.14.12",
         "eslint": "^9.7.0",
         "jest": "^29.7.0",
+        "prettier": "^3.3.3",
         "ts-jest": "^29.2.3",
         "typescript": "^5.5.4",
         "yarn": "^1.22.22"

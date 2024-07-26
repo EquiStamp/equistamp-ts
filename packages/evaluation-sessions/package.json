@@ -1,7 +1,7 @@
 {
-  "name": "@equistamp/alerts",
-  "private": false,
+  "name": "@equistamp/evaluation-sessions",
   "version": "1.0.0",
+  "private": false,
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,12 +16,10 @@
     "url": "git+https://github.com/EquiStamp/equistamp-ts.git"
   },
   "keywords": [
-    "Evaluations",
-    "AI",
-    "ML",
-    "LLM"
+    "Equistamp"
   ],
   "author": "Equistamp",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/EquiStamp/equistamp-ts/issues"
   },

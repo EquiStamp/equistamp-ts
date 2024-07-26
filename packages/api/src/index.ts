@@ -1,24 +1,22 @@
 import BaseAPI, {ServerError} from '@equistamp/server'
-import {Auth} from '@equistamp/auth'
-import {Alerts} from '@equistamp/alerts'
-import {EvaluationSessions} from '@equistamp/evaluationSessions'
-import {Evaluations} from '@equistamp/evaluations'
-import {ModelConnections} from '@equistamp/modelConnections'
-import {Models} from '@equistamp/models'
-import {Schedules} from '@equistamp/schedules'
-import {Scores} from '@equistamp/scores'
-import {Tags} from '@equistamp/tags'
-import {Tasks, Schemas} from '@equistamp/tasks'
-import {Tester} from '@equistamp/tester'
-import {Users} from '@equistamp/users'
+import Auth from '@equistamp/auth'
+import Alerts from '@equistamp/alerts'
+import EvaluationSessions from '@equistamp/evaluation-sessions'
+import Evaluations from '@equistamp/evaluations'
+import ModelConnections from '@equistamp/model-connections'
+import Models from '@equistamp/models'
+import Schedules from '@equistamp/schedules'
+import Scores from '@equistamp/scores'
+import Tags from '@equistamp/tags'
+import Tasks, { Schemas} from '@equistamp/tasks'
+import Tester from '@equistamp/tester'
+import Users from '@equistamp/users'
 import type {APISettings, Contact} from '@equistamp/types'
 
-export {
-    ServerError
-}
+export {ServerError}
 
 export default class API extends BaseAPI {
-    auth: Auth
+  auth: Auth
   alerts: Alerts
   evaluations: Evaluations
   evaluationSessions: EvaluationSessions
@@ -34,7 +32,7 @@ export default class API extends BaseAPI {
 
   constructor(config: APISettings) {
     super(config)
-      this.auth = new Auth(config)
+    this.auth = new Auth(config)
     this.alerts = new Alerts(config)
     this.evaluations = new Evaluations(config)
     this.evaluationSessions = new EvaluationSessions(config)

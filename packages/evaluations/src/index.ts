@@ -1,7 +1,7 @@
 import {FilterConfig, SearchResult, Evaluation, EvaluationCheck} from '@equistamp/types'
 import {Endpoint} from '@equistamp/server'
 
-export class Evaluations extends Endpoint<Evaluation>('/evaluation') {
+export default class Evaluations extends Endpoint<Evaluation>('/evaluation') {
   list = async (query: FilterConfig): Promise<SearchResult> => {
     const filters = query.filters || {}
     const fields = filters.fields || [

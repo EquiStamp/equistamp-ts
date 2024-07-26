@@ -1,5 +1,5 @@
-import type {User, LoginParams, FilterConfig} from '@equistamp/types'
-import BaseAPI, {Endpoint} from '@equistamp/server'
+import type { LoginParams} from '@equistamp/types'
+import BaseAPI from '@equistamp/server'
 
 const getSessionId = () =>
   Object.fromEntries(document.cookie.split('; ').map((v) => v.split('='))).sessionId
@@ -21,19 +21,19 @@ export const setSession = async (response: any) => {
   return response
 }
 
-export class Auth extends BaseAPI {
+export default class Auth extends BaseAPI {
   login = async (params: LoginParams) => {
     const response = await this.Put('/auth', params)
     // Set the session ID cookie
     return !!(await setSession(response))
   }
 
-    logout = async () => {
-        document.cookie = 'sessionId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
-        return true
-    }
+  logout = async () => {
+    document.cookie = 'sessionId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+    return true
+  }
 
-    isLoggedIn = () => !!getSessionId()
+  isLoggedIn = () => !!getSessionId()
 
   me = async () => {
     if (!this.isLoggedIn()) return null
@@ -46,10 +46,10 @@ export class Auth extends BaseAPI {
     })
   }
 
-    setSession = async (response: any) => {
-        const {session_token, token_expiration} = response
-        const expirationDate = new Date(token_expiration)
-        await setSessionCookie(session_token, expirationDate)
-        return response
-    }
+  setSession = async (response: any) => {
+    const {session_token, token_expiration} = response
+    const expirationDate = new Date(token_expiration)
+    await setSessionCookie(session_token, expirationDate)
+    return response
+  }
 }

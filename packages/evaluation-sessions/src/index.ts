@@ -8,7 +8,7 @@ import type {
 } from '@equistamp/types'
 import {Endpoint} from '@equistamp/server'
 
-export class EvaluationSessions extends Endpoint<Eval>('/evaluationsession') {
+export default class EvaluationSessions extends Endpoint<Eval>('/evaluationsession') {
   getResponses = async (params: FilterConfig) => {
     return params?.filters?.evaluation_session_id
       ? this.search('/response', params)

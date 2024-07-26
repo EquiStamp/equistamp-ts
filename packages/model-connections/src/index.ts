@@ -1,7 +1,7 @@
 import {Endpoint} from '@equistamp/server'
 import {Evaluation, Model, ModelConnection} from '@equistamp/types'
 
-export class ModelConnections extends Endpoint<ModelConnection>('/modelsconnecter') {
+export default class ModelConnections extends Endpoint<ModelConnection>('/modelsconnecter') {
   connectModels = async (connections: ModelConnection[]) => {
     return this.Post('/modelsconnecter', {connections})
   }
