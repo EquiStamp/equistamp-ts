@@ -2,6 +2,7 @@ import {
   TOP_MODEL,
   MODEL_RANK_CHANGE,
   MODEL_AVAILABILITY,
+  MODEL_STABILITY,
   NEW_MODEL,
   NEW_EVALUATION,
   MODEL_CHANGE,
@@ -302,6 +303,7 @@ export type TriggerTypes =
   | typeof TOP_MODEL
   | typeof MODEL_RANK_CHANGE
   | typeof MODEL_AVAILABILITY
+  | typeof MODEL_STABILITY
   | typeof NEW_MODEL
   | typeof NEW_EVALUATION
   | typeof MODEL_CHANGE
