@@ -328,8 +328,10 @@ export type SubscriptionType =
 export type Subscription = {
   method: SubscriptionType
   destination?: string
+  confirmed?: boolean
   owner_id?: ID
   alert_id?: ID
+  evaluation_session_id?: ID
 }
 export type Trigger = {
   id?: ID

@@ -7,6 +7,7 @@ import ModelConnections from '@equistamp/model-connections'
 import Models from '@equistamp/models'
 import Schedules from '@equistamp/schedules'
 import Scores from '@equistamp/scores'
+import Subscriptions from '@equistamp/subscriptions'
 import Tags from '@equistamp/tags'
 import Tasks, {Schemas} from '@equistamp/tasks'
 import Tester from '@equistamp/tester'
@@ -25,6 +26,7 @@ export default class API extends BaseAPI {
   schedules: Schedules
   schemas: Schemas
   scores: Scores
+  subscriptions: Subscriptions
   tags: Tags
   tasks: Tasks
   tester: Tester
@@ -41,6 +43,7 @@ export default class API extends BaseAPI {
     this.schedules = new Schedules(config)
     this.schemas = new Schemas(config)
     this.scores = new Scores(config)
+    this.subscriptions = new Subscriptions(config)
     this.tags = new Tags(config)
     this.tasks = new Tasks(config)
     this.tester = new Tester(config)

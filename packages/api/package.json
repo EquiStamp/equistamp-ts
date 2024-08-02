@@ -1,7 +1,7 @@
 {
   "name": "@equistamp/api",
   "private": false,
-  "version": "1.0.3",
+  "version": "1.1.0",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -39,6 +39,7 @@
     "@equistamp/schedules": "^1.0.0",
     "@equistamp/scores": "^1.0.0",
     "@equistamp/server": "^1.0.0",
+    "@equistamp/subscriptions": "^1.0.0",
     "@equistamp/tags": "^1.0.0",
     "@equistamp/tasks": "^1.0.0",
     "@equistamp/tester": "^1.0.0",
