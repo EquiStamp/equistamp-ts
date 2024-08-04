@@ -34,6 +34,9 @@ import {
   LEAST_EXPENSIVE,
   LATENCY,
   ACCURACY,
+  SESSION_TOKEN,
+  API_TOKEN,
+  COOKIE,
 } from '@equistamp/constants'
 
 export type APISettings = {
@@ -466,11 +469,13 @@ export type Contact = {
   to: string
 }
 
+export type TokenStorage = typeof SESSION_TOKEN | typeof API_TOKEN | typeof COOKIE
 export type LoginParams = {
   login?: string
   password?: string
   code?: string
   external_auth?: 'google' | 'github'
+  storage?: TokenStorage
 }
 
 export type Schedule = {

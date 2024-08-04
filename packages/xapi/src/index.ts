@@ -31,6 +31,7 @@ export default class API extends BaseAPI {
   tasks: Tasks
   tester: Tester
   users: Users
+  _authSetTokens: (sessionToken?: string, apiToken?: string) => void
 
   constructor(config: APISettings) {
     super(config)
@@ -48,19 +49,41 @@ export default class API extends BaseAPI {
     this.tasks = new Tasks(config)
     this.tester = new Tester(config)
     this.users = new Users(config)
+
+    this._authSetTokens = this.auth.setTokens
+    this.auth.setTokens = this.setTokens
   }
 
   contact = async (params: Contact) => {
     return this.Post('/contact', params)
+  }
+
+  setTokens = (sessionToken?: string, apiToken?: string) => {
+    this._authSetTokens(sessionToken, apiToken)
+    const endpoints = [
+      this.alerts,
+      this.evaluations,
+      this.evaluationSessions,
+      this.modelConnections,
+      this.models,
+      this.schedules,
+      this.schemas,
+      this.scores,
+      this.subscriptions,
+      this.tags,
+      this.tasks,
+      this.tester,
+      this.users,
+    ]
+    endpoints.forEach((endpoint) => endpoint.setTokens(sessionToken, apiToken))
   }
 }
 
 export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001'
 // export const API_BASE_URL = 'https://equistamp.net'
 
-export const getSessionId = () =>
-  Object.fromEntries(document.cookie.split('; ').map((v) => v.split('='))).sessionId
-
 export const makeApi = () => {
-  return new API({server: API_BASE_URL, sessionToken: getSessionId()})
+  const api = new API({server: API_BASE_URL})
+  api.auth.getSessionId()
+  return api
 }

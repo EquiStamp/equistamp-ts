@@ -51,3 +51,7 @@ export const PATCH = 'PATCH'
 export const PUT = 'PUT'
 export const OPTIONS = 'OPTIONS'
 export const HTTP_METHODS = [GET, POST, PATCH, PUT, OPTIONS, DELETE]
+
+export const SESSION_TOKEN = 'session_token'
+export const API_TOKEN = 'api_token'
+export const COOKIE = 'cookie'

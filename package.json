@@ -7,7 +7,7 @@
         "packages/*"
     ],
     "scripts": {
-        "build": "yarn workspaces run build",
+        "build": "cp packages/xapi/README.md ./ && yarn workspaces run build",
         "test": "yarn workspaces run test",
         "link-all": "yarn workspaces run yarn link",
         "publish-all": "npm publish --workspaces --access public",

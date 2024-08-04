@@ -121,17 +121,32 @@ export const Search = async (
 class BaseAPI {
   baseURL: string
   headers: Headers
+  apiToken?: string
+  sessionToken?: string
 
   constructor({server, sessionToken, apiToken}: APISettings) {
     this.baseURL = server || 'http://localhost:3001'
-    this.headers = {
+    this.sessionToken = sessionToken
+    this.apiToken = apiToken
+    this.headers = this.makeHeaders({sessionToken, apiToken})
+  }
+
+  setTokens = (sessionToken?: string, apiToken?: string) => {
+    this.sessionToken = sessionToken
+    this.apiToken = apiToken
+    this.headers = this.makeHeaders({sessionToken, apiToken})
+  }
+
+  makeHeaders = ({sessionToken, apiToken}: APISettings) => {
+    let headers = {
       'Content-Type': 'application/json',
-    }
+    } as Headers
     if (sessionToken) {
-      this.headers['Session-Token'] = sessionToken
+      headers['Session-Token'] = sessionToken
     } else if (apiToken) {
-      this.headers['Api-Token'] = apiToken
+      headers['Api-Token'] = apiToken
     }
+    return headers
   }
 
   request = async (endpoint: string, data?: Data, method?: HTTPMethod) => {
