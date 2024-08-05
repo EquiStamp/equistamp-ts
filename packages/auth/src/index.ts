@@ -54,7 +54,7 @@ export default class Auth extends BaseAPI {
    * This will clear out all credentials from the object.
    * In browsers, this will also clear any sessionId cookie.
    */
-  logout = async () => {
+  logout = () => {
     if (typeof document !== 'undefined') {
       document.cookie = 'sessionId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
     }
@@ -78,7 +78,7 @@ export default class Auth extends BaseAPI {
 
     return this.Get('/auth', {fields}).catch(async (e) => {
       if ((e || '').toString().includes('Unauthorised')) {
-        await this.logout()
+        this.logout()
       }
       return null
     })
@@ -91,6 +91,7 @@ export default class Auth extends BaseAPI {
     const {session_token, token_expiration} = response
     const expirationDate = new Date(token_expiration)
     setSessionCookie(session_token, expirationDate)
+    this.setTokens(session_token)
     return response
   }
 

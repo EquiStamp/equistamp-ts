@@ -68,17 +68,19 @@ export type CodeOverrides = {
 }
 export type CodeStage = 'system_prompt' | 'prompt' | 'grader' | 'request' | 'response'
 
-export type Eval = {
-  id: ID
-  evaluation_id: ID
-  evaluatee_id: ID
-  evaluation_name: EvalName
-  evaluatee_name: ModelName
+export type EvaluationSession = {
+  id?: ID
+  origin?: 'model' | 'user' | 'alert' | 'job'
+  is_human_being_evaluated?: boolean
+  evaluation_id?: ID
+  evaluatee_id?: ID
+  evaluation_name?: EvalName
+  evaluatee_name?: ModelName
   datetime_completed?: string
-  datetime_started: string
-  score: number
-  num_answered_correctly: number
-  num_questions_answered: number
+  datetime_started?: string
+  score?: number
+  num_answered_correctly?: number
+  num_questions_answered?: number
   num_tasks_to_complete?: number
   median_seconds_per_task?: number
   completed?: boolean
@@ -90,6 +92,19 @@ export type Eval = {
   report_paid?: number
   price?: number
   estimated_session_cost_usd?: number
+  notify?: Subscription[]
+}
+
+export type Eval = EvaluationSession & {
+  id: ID
+  evaluation_id: ID
+  evaluatee_id: ID
+  evaluation_name: EvalName
+  evaluatee_name: ModelName
+  datetime_started: string
+  score: number
+  num_answered_correctly: number
+  num_questions_answered: number
 }
 
 export type DateMap = {

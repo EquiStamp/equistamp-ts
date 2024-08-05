@@ -46,11 +46,8 @@ export default class Users extends Endpoint<User>('/user') {
     return this.Get('/paymentshandler', {product: level})
   }
 
-  manageSubscription = async (user: User, subType?: string) => {
-    return this.Put('/paymentshandler', {id: user.id, type: subType})
-  }
+  manageSubscription = async (user: User, subType?: string) =>
+    this.Put('/paymentshandler', {id: user.id, type: subType})
 
-  buyCredits = async () => {
-    return this.Post('/paymentshandler', {type: 'credits'})
-  }
+  buyCredits = async () => this.Post('/paymentshandler', {type: 'credits'})
 }

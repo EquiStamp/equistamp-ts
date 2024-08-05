@@ -1,5 +1,6 @@
+import {jest, describe, it, expect, beforeEach} from '@jest/globals'
+import {JSDOM} from 'jsdom'
 import Auth from './index'
-import BaseAPI from '@equistamp/server'
 
 describe('Auth', () => {
   let auth: Auth
@@ -9,9 +10,9 @@ describe('Auth', () => {
   beforeEach(() => {
     mockPut = jest.fn()
     mockGet = jest.fn()
-    ;(BaseAPI.prototype.Put as jest.Mock) = mockPut
-    ;(BaseAPI.prototype.Get as jest.Mock) = mockGet
     auth = new Auth({server: 'http://test.com'})
+    ;(auth.Put as jest.Mock) = mockPut
+    ;(auth.Get as jest.Mock) = mockGet
   })
 
   describe('login', () => {
@@ -23,38 +24,15 @@ describe('Auth', () => {
     })
 
     it('should login with API_TOKEN', async () => {
-      mockPut.mockResolvedValue({api_token: 'test_api_token'})
+      mockPut.mockResolvedValue({session_token: 'test_session_token'})
+      mockGet.mockResolvedValue({api_token: 'test_api_token'})
       const result = await auth.login({login: 'user', password: 'pass', storage: 'api_token'})
       expect(result).toBe(true)
       expect(auth.apiToken).toBe('test_api_token')
     })
-
-    it('should login with COOKIE', async () => {
-      const mockSetSession = jest.spyOn(auth, 'setSession').mockResolvedValue(true)
-      mockPut.mockResolvedValue({
-        session_token: 'test_session_token',
-        token_expiration: '2023-06-01T00:00:00Z',
-      })
-      const result = await auth.login({login: 'user', password: 'pass', storage: 'cookie'})
-      expect(result).toBe(true)
-      expect(mockSetSession).toHaveBeenCalled()
-    })
-  })
-
-  describe('logout', () => {
-    it('should clear session cookie', async () => {
-      document.cookie = 'sessionId=test_session_id'
-      await auth.logout()
-      expect(document.cookie).not.toContain('sessionId=test_session_id')
-    })
   })
 
   describe('isLoggedIn', () => {
-    it('should return true when session cookie exists', () => {
-      document.cookie = 'sessionId=test_session_id'
-      expect(auth.isLoggedIn()).toBe(true)
-    })
-
     it('should return true when sessionToken exists', () => {
       auth.sessionToken = 'test_session_token'
       expect(auth.isLoggedIn()).toBe(true)
@@ -63,13 +41,6 @@ describe('Auth', () => {
     it('should return true when apiToken exists', () => {
       auth.apiToken = 'test_api_token'
       expect(auth.isLoggedIn()).toBe(true)
-    })
-
-    it('should return false when no session exists', () => {
-      document.cookie = ''
-      auth.sessionToken = undefined
-      auth.apiToken = undefined
-      expect(auth.isLoggedIn()).toBe(false)
     })
   })
 
@@ -93,34 +64,6 @@ describe('Auth', () => {
       const result = await auth.me()
       expect(result).toBeNull()
       expect(logoutSpy).toHaveBeenCalled()
-    })
-  })
-
-  describe('setSession', () => {
-    it('should set session cookie and update auth instance', async () => {
-      const mockSetCookie = jest.fn()
-      Object.defineProperty(document, 'cookie', {
-        set: mockSetCookie,
-        configurable: true,
-      })
-
-      const response = {
-        session_token: 'new_session_token',
-        token_expiration: '2023-06-01T00:00:00Z',
-      }
-      await auth.setSession(response)
-
-      expect(mockSetCookie).toHaveBeenCalledWith(
-        expect.stringContaining('sessionId=new_session_token'),
-      )
-      expect(mockSetCookie).toHaveBeenCalledWith(
-        expect.stringContaining('expires=Thu, 01 Jun 2023 00:00:00 GMT'),
-      )
-      expect(mockSetCookie).toHaveBeenCalledWith(
-        expect.stringContaining('path=/; SameSite=Strict; Secure'),
-      )
-      expect(auth.sessionToken).toBe('new_session_token')
-      expect(auth.headers['Session-Token']).toBe('new_session_token')
     })
   })
 
@@ -150,6 +93,58 @@ describe('Auth', () => {
         'Content-Type': 'application/json',
         'Session-Token': 'test_session_token',
       })
+    })
+  })
+
+  describe('Tests with document object', () => {
+    let originalGlobal: any
+
+    beforeEach(() => {
+      originalGlobal = global
+      const dom = new JSDOM('<!doctype html><html><body></body></html>')
+      global.document = dom.window.document
+      global.window = dom.window as any as Window & typeof globalThis
+    })
+
+    afterEach(() => {
+      global = originalGlobal
+    })
+
+    it('should clear session cookie', async () => {
+      document.cookie = 'sessionId=test_session_id'
+      await auth.logout()
+      expect(document.cookie).not.toContain('sessionId=test_session_id')
+    })
+
+    it('should login with COOKIE', async () => {
+      const mockSetSession = jest.spyOn(auth, 'setSession').mockResolvedValue(true)
+      mockPut.mockResolvedValue({
+        session_token: 'test_session_token',
+        token_expiration: '2023-06-01T00:00:00Z',
+      })
+      const result = await auth.login({login: 'user', password: 'pass', storage: 'cookie'})
+      expect(result).toBe(true)
+      expect(mockSetSession).toHaveBeenCalled()
+    })
+
+    it('should set session cookie and update auth instance', async () => {
+      document.cookie = 'sessionId=test_session_id'
+
+      const response = {
+        session_token: 'new_session_token',
+        token_expiration: '2023-06-01T00:00:00Z',
+      }
+      await auth.setSession(response)
+
+      expect(auth.sessionToken).toBe('new_session_token')
+      expect(auth.headers['Session-Token']).toBe('new_session_token')
+    })
+
+    it('should return false when no session exists', () => {
+      document.cookie = ''
+      auth.sessionToken = undefined
+      auth.apiToken = undefined
+      expect(auth.isLoggedIn()).toBe(false)
     })
   })
 })

@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "test": "jest",
+      "test": "node --experimental-vm-modules $(yarn bin jest)",
     "push": "npm publish --access public"
   },
   "repository": {
