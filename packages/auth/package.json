@@ -1,14 +1,14 @@
 {
   "name": "@equistamp/auth",
   "private": false,
-  "version": "1.1.1",
+  "version": "1.1.2",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-      "test": "node --experimental-vm-modules $(yarn bin jest)",
+    "test": "node --experimental-vm-modules $(yarn bin jest)",
     "push": "npm publish --access public"
   },
   "repository": {
