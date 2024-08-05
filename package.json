@@ -1,7 +1,7 @@
 {
     "name": "@equistamp/equistamp",
     "private": true,
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "A TypeScript library for interacting with equistamp.com",
     "workspaces": [
         "packages/*"
