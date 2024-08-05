@@ -1,6 +1,6 @@
 <div align="center">
   <picture>
-    <img height="40" alt="Equistamp's logo" src="/blob/.github/assets/logoBlue.png">
+    <img height="40" alt="Equistamp's logo" src="/.github/assets/logoBlue.png">
   </picture>
 
   <br />
