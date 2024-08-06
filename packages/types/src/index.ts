@@ -177,6 +177,14 @@ export type ModelStats = {
   max_latency?: number
   avg_latency?: number
   median_latency?: number
+  min_throughput?: number
+  max_throughput?: number
+  avg_throughput?: number
+  median_throughput?: number
+  min_verbosity?: number
+  max_verbosity?: number
+  avg_verbosity?: number
+  median_verbosity?: number
   calculation_date: string
 }
 
