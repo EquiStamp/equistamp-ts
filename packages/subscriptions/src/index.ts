@@ -1,7 +1,7 @@
 import {Endpoint} from '@equistamp/server'
 import type {Subscription} from '@equistamp/types'
 
-export default class Subscriptions extends Endpoint<Subscription>('/subscriptions') {
+export default class Subscriptions extends Endpoint<Subscription>('/subscription') {
   subscribeAlert = async (alertId: string) => {
     return this.Post('/subscription', {item: alertId, type: 'alert'})
   }

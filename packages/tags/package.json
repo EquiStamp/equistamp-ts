@@ -9,7 +9,6 @@
   "scripts": {
     "build": "tsc",
     "test": "jest --passWithNoTests",
-    "link": "yarn link",
     "push": "npm publish --access public"
   },
   "repository": {

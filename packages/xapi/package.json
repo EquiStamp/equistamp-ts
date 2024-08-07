@@ -9,8 +9,8 @@
   "scripts": {
     "build": "tsc",
     "test": "jest --passWithNoTests",
-    "link": "yarn link",
-    "push": "npm publish --access public"
+    "push": "npm publish --access public",
+    "update-deps": "node update-dependancies"
   },
   "repository": {
     "type": "git",

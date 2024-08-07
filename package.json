@@ -4,6 +4,9 @@
     "version": "1.1.5",
     "description": "A TypeScript library for interacting with equistamp.com",
     "workspaces": [
+        "packages/constants",
+        "packages/types",
+        "packages/server",
         "packages/*"
     ],
     "scripts": {
@@ -13,12 +16,14 @@
         "publish-all": "npm publish --workspaces --access public",
         "prettier": "yarn workspaces run prettier --check .",
         "lint": "yarn workspaces run tsc && yarn prettier && npm run eslint",
+        "eslint": "yarn workspaces run eslint .",
         "eslint:fix": "yarn workspaces run eslint --fix",
         "prettier:fix": "yarn workspaces run prettier --write .",
         "lint:fix": "yarn workspaces run tsc && npm run prettier:fix && npm run eslint:fix",
-        "bump-patch": "yarn workspaces run yarn version --no-git-tag-version --new-version patch && git add . && yarn version --new-version patch",
-        "bump-minor": "yarn workspaces run yarn version --no-git-tag-version --new-version minor && git add . && yarn version --new-version minor",
-        "bump-major": "yarn workspaces run yarn version --no-git-tag-version --new-version major && git add . && yarn version --new-version major"
+        "update-deps": "cd packages/xapi && npm run update-deps && cd ../.. && git add .",
+        "bump-patch": "yarn workspaces run yarn version --no-git-tag-version --new-version patch && npm run update-deps && yarn version --new-version patch",
+        "bump-minor": "yarn workspaces run yarn version --no-git-tag-version --new-version minor && npm run update-deps && yarn version --new-version minor",
+        "bump-major": "yarn workspaces run yarn version --no-git-tag-version --new-version major && npm run update-deps && yarn version --new-version major"
     },
     "repository": {
         "type": "git",
@@ -41,7 +46,7 @@
         "@types/jest": "^29.5.12",
         "@types/jsdom": "^21.1.7",
         "@types/node": "^20.14.12",
-        "eslint": "^9.7.0",
+        "eslint": "^9.8.0",
         "jest": "^29.7.0",
         "jsdom": "^24.1.1",
         "prettier": "^3.3.3",

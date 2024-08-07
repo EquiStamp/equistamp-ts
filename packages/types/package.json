@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/EquiStamp/equistamp-ts#readme",
   "dependencies": {
-    "@equistamp/constants": "^1.0.0"
+    "@equistamp/constants": "^1.1.5"
   },
   "devDependencies": {
     "typescript": "^4.5.4"
