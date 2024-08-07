@@ -20,7 +20,7 @@
         "eslint:fix": "yarn workspaces run eslint --fix",
         "prettier:fix": "yarn workspaces run prettier --write .",
         "lint:fix": "yarn workspaces run tsc && npm run prettier:fix && npm run eslint:fix",
-        "update-deps": "cd packages/xapi && npm run update-deps && cd ../.. && git add .",
+        "update-deps": "cd packages/xapi && npm run update-deps && npm run lint:fix && cd ../.. && git add .",
         "bump-patch": "yarn workspaces run yarn version --no-git-tag-version --new-version patch && npm run update-deps && yarn version --new-version patch",
         "bump-minor": "yarn workspaces run yarn version --no-git-tag-version --new-version minor && npm run update-deps && yarn version --new-version minor",
         "bump-major": "yarn workspaces run yarn version --no-git-tag-version --new-version major && npm run update-deps && yarn version --new-version major"
