@@ -9,6 +9,8 @@ export default class Evaluations extends Endpoint<Evaluation>('/evaluation') {
       'name',
       'description',
       'public',
+      'public_usable',
+      'reports_visible',
       'tags',
       'modalities',
       'task_types',
