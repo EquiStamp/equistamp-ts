@@ -297,6 +297,8 @@ export type Evaluation = {
   modalities?: Modality[]
   min_questions_to_complete?: number
   public?: boolean
+  public_usable?: boolean
+  reports_visible?: boolean
   users?: User[]
   samples?: Example[]
   num_tasks?: number
