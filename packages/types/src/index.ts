@@ -557,7 +557,7 @@ export type ModelsFiltersType = {
   minNumParameters?: number
   maxNumParameters?: number
   modalities?: Modality[]
-  public_useable?: boolean
+  public_usable?: boolean
   evaluation?: ID
 
   minLatency?: number
